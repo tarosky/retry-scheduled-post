@@ -1,6 +1,6 @@
 {
   "name": "tarosky/retry-scheduled-post",
-  "description": "If the future scheduled post fails to publish, this plugin will republish it.",
+  "description": "If the future scheduled post failed to publish, this plugin will republish it.",
   "type": "wordpress-plugin",
   "license": "GPL-3.0-or-later",
   "authors": [
