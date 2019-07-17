@@ -15,3 +15,25 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
+
+/**
+ * Initialize plugin.
+ */
+add_action( 'plugins_loaded', function () {
+	load_plugin_textdomain(
+		'retry-scheduled-post',
+		false,
+		dirname( plugin_basename( __FILE__ ) ) . '/languages'
+	);
+
+	Tarosky\RetryScheduledPost::get_instance()->register();
+} );
+
+/**
+ * Deactivation.
+ */
+register_deactivation_hook( __FILE__, function () {
+	Tarosky\RetryScheduledPost::get_instance()->deactivation();
+} );

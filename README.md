@@ -16,10 +16,6 @@ If the future scheduled post fails to publish, this plugin will republish it.
 
 ## Installation ##
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload `retry-scheduled-post` folder to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
