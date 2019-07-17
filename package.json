@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "Gruntfile.js",
   "author": "Tarosky inc.",
+  "scripts": {
+    "start": "echo 'Define some script here!'"
+  },
   "devDependencies": {
     "grunt": "~1.0.4",
     "grunt-wp-i18n": "~1.0.3",
