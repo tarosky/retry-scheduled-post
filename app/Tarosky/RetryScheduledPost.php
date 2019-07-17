@@ -3,13 +3,13 @@
 namespace Tarosky;
 
 use Tarosky\RetryScheduledPost\Admin\Admin;
-//use Tarosky\RetryScheduledPost\Hooks\Rules;
+use Tarosky\RetryScheduledPost\Hooks\Schedule;
 use Tarosky\RetryScheduledPost\Pattern\Singleton;
 
 /**
- * Run this plugin.
+ * Class RetryScheduledPost
  *
- * @package Retry_Scheduled_Post
+ * @package Tarosky
  */
 class RetryScheduledPost extends Singleton {
 
@@ -22,9 +22,14 @@ class RetryScheduledPost extends Singleton {
 		if ( is_admin() ) {
 			Admin::get_instance();
 		}
-//		Rules::get_instance();
-//		News::get_instance();
-//		Sitemap::get_instance();
+		Schedule::get_instance();
+	}
+
+	/**
+	 * Aactivation
+	 */
+	public function activation() {
+		Schedule::get_instance()->update_cron_schedule();
 	}
 
 	/**
@@ -32,7 +37,7 @@ class RetryScheduledPost extends Singleton {
 	 */
 	public function deactivation() {
 		delete_option( $this->get_slug() );
-		flush_rewrite_rules();
+		Schedule::get_instance()->clear_cron_schedule();
 	}
 
 	/**

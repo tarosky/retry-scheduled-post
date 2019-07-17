@@ -19,6 +19,19 @@ class Util {
 	}
 
 	/**
+	 * Default retry interval.
+	 */
+	public static function default_retry_interval() {
+
+		/**
+		 * Filters default retry interval.
+		 *
+		 * @param int
+		 */
+		return apply_filters( 'rsp_default_retry_interval', 5 );
+	}
+
+	/**
 	 * Default retry post count.
 	 */
 	public static function default_retry_post_count() {

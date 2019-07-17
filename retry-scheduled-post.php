@@ -32,7 +32,14 @@ add_action( 'plugins_loaded', function () {
 } );
 
 /**
- * Deactivation.
+ * Activation hook.
+ */
+register_activation_hook( __FILE__, function () {
+	Tarosky\RetryScheduledPost::get_instance()->activation();
+} );
+
+/**
+ * Deactivation hook.
  */
 register_deactivation_hook( __FILE__, function () {
 	Tarosky\RetryScheduledPost::get_instance()->deactivation();

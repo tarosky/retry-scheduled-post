@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Retry Scheduled Post 0.1.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/retry-scheduled-post\n"
-"POT-Creation-Date: 2019-07-16 21:10:30+00:00\n"
+"POT-Creation-Date: 2019-07-17 08:08:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,49 +29,36 @@ msgstr ""
 msgid "Retry Scheduled Post"
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:41
-msgid "XML Sitemap Settings"
-msgstr ""
-
 #: app/Tarosky/RetryScheduledPost/Admin/Admin.php:44
-msgid "Please set up settings for XML Sitemaps."
+msgid "Basic Settings"
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:50
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:81
-msgid "Enable sitemap"
+#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:47
+msgid "You can adjust the plugin basic settings."
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:58
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:97
-msgid "Enable post types"
+#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:53
+msgid "Retry interval"
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:66
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:105
-msgid "Within days"
+#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:61
+msgid "Retry post count"
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:72
-msgid "Google News Sitemap Settings"
+#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:78
+msgid "Retry interval in minutes. Default is <code>%s</code>."
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:75
-msgid "Please set up settings for Google News Sitemap."
+#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:92
+msgid "Retry this number at one time. Default is <code>%s</code>."
 msgstr ""
 
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:89
-msgid "Publication_name"
-msgstr ""
-
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:162
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:193
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:228
-msgid "Default is <code>%s</code>."
-msgstr ""
-
-#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:255
+#: app/Tarosky/RetryScheduledPost/Admin/Admin.php:103
 msgid "Retry Scheduled Post Settings"
+msgstr ""
+
+#: app/Tarosky/RetryScheduledPost/Hooks/Schedule.php:37
+msgid "Every %d minutes"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

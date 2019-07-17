@@ -2,6 +2,7 @@
 
 namespace Tarosky\RetryScheduledPost\Admin;
 
+use Tarosky\RetryScheduledPost\Hooks\Schedule;
 use Tarosky\RetryScheduledPost\Pattern\Singleton;
 use Tarosky\RetryScheduledPost\Utility\Util;
 
@@ -48,12 +49,34 @@ class Admin extends Singleton {
 		}, $this->slug );
 
 		add_settings_field(
+			'retry_interval',
+			__( 'Retry interval', 'retry-scheduled-post' ),
+			[ $this, 'retry_interval_callback' ],
+			$this->slug,
+			'basic_settings'
+		);
+
+		add_settings_field(
 			'retry_post_count',
 			__( 'Retry post count', 'retry-scheduled-post' ),
 			[ $this, 'retry_post_count_callback' ],
 			$this->slug,
 			'basic_settings'
 		);
+	}
+
+	/**
+	 * Render callback for retry interval.
+	 */
+	public function retry_interval_callback() {
+		$retry_interval = isset( $this->options['retry_interval'] ) ? $this->options['retry_interval'] : '';
+		?>
+        <input name="<?php echo $this->slug; ?>[retry_interval]" type="number" step="1" min="1" max="60"
+               id="retry_interval" value="<?php echo esc_attr( $retry_interval ); ?>"
+               placeholder="<?php echo esc_attr( Util::default_retry_interval() ); ?>"
+               class="small-text">
+        <p class="description"><?php printf( __( 'Retry interval in minutes. Default is <code>%s</code>.', 'retry-scheduled-post' ), Util::default_retry_interval() ); ?></p>
+		<?php
 	}
 
 	/**
@@ -64,6 +87,7 @@ class Admin extends Singleton {
 		?>
         <input name="<?php echo $this->slug; ?>[retry_post_count]" type="number" step="1" min="1" max="100"
                id="retry_post_count" value="<?php echo esc_attr( $retry_post_count ); ?>"
+               placeholder="<?php echo esc_attr( Util::default_retry_post_count() ); ?>"
                class="small-text">
         <p class="description"><?php printf( __( 'Retry this number at one time. Default is <code>%s</code>.', 'retry-scheduled-post' ), Util::default_retry_post_count() ); ?></p>
 		<?php
@@ -96,9 +120,11 @@ class Admin extends Singleton {
 	 * @param $value
 	 */
 	public static function updated_option( $option, $old_value, $value ) {
-		switch( $option ) {
+		switch ( $option ) {
 			case 'retry-scheduled-post':
-				//
+				if ( $old_value != $value ) {
+					Schedule::get_instance()->update_cron_schedule();
+				}
 				break;
 		}
 	}
