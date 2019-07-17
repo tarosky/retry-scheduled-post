@@ -7,7 +7,7 @@
  * Author URI:      https://tarosky.co.jp
  * Text Domain:     retry-scheduled-post
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         1.0.0
  *
  * @package         Retry_Scheduled_Post
  */

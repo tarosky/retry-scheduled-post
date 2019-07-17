@@ -4,7 +4,7 @@
 **Tags:** future, future posts, scheduled posts, scheduled, posts  
 **Requires at least:** 4.5  
 **Tested up to:** 5.2.2  
-**Stable tag:** 0.1.0  
+**Stable tag:** 1.0.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -21,5 +21,5 @@ If the future scheduled post fails to publish, this plugin will republish it.
 
 ## Changelog ##
 
-### 0.1.0 ###
+### 1.0.0 ###
 * First release.

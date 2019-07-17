@@ -1,8 +1,8 @@
 {
   "name": "retry-scheduled-post",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "Gruntfile.js",
-  "author": "YOUR NAME HERE",
+  "author": "Tarosky inc.",
   "devDependencies": {
     "grunt": "~1.0.4",
     "grunt-wp-i18n": "~1.0.3",
