@@ -3,7 +3,6 @@
 namespace Tarosky\RetryScheduledPost\Hooks;
 
 use Tarosky\RetryScheduledPost\Pattern\Singleton;
-use Tarosky\RetryScheduledPost\Utility\Util;
 
 /**
  * Class Schedule
@@ -28,10 +27,7 @@ class Schedule extends Singleton {
 	 * @return mixed
 	 */
 	public function cron_schedules( $schedules ) {
-
-		if ( ! $retry_interval = $this->options['retry_interval'] ) {
-			$retry_interval = Util::default_retry_interval();
-		}
+		$retry_interval            = $this->get_retry_interval();
 		$schedules['rsp_interval'] = [
 			'interval' => $retry_interval * MINUTE_IN_SECONDS,
 			'display'  => sprintf( __( 'Every %d minutes', 'retry-scheduled-post' ), $retry_interval )
@@ -67,5 +63,27 @@ class Schedule extends Singleton {
 				wp_publish_post( $post_id );
 			}
 		}
+	}
+
+	/**
+	 * Get retry interval.
+	 */
+	public function get_retry_interval() {
+		if ( ! $retry_interval = $this->options['retry_interval'] ) {
+			$retry_interval = rsp_default_retry_interval();
+		}
+
+		return $retry_interval;
+	}
+
+	/**
+	 * Get retry post count.
+	 */
+	public function get_retry_post_count() {
+		if ( ! $retry_post_count = $this->options['retry_post_count'] ) {
+			$retry_post_count = rsp_default_retry_post_count();
+		}
+
+		return $retry_post_count;
 	}
 }

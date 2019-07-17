@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 
+require_once( dirname( __FILE__ ) . '/functions.php' );
+
 /**
  * Initialize plugin.
  */
@@ -27,7 +29,6 @@ add_action( 'plugins_loaded', function () {
 		false,
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
-
 	Tarosky\RetryScheduledPost::get_instance()->register();
 } );
 
