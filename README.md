@@ -8,11 +8,11 @@
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
-If the future scheduled post fails to publish, this plugin will republish it.
+If the future scheduled post failed to publish, this plugin will republish it.
 
 ## Description ##
 
-If the future scheduled post fails to publish, this plugin will republish it.
+If the future scheduled post failed to publish, this plugin will republish it.
 
 ## Installation ##
 
