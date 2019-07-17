@@ -67,6 +67,13 @@ SQL;
 		if ( $post_ids = $this->db->get_col( $sql ) ) {
 			foreach ( $post_ids as $post_id ) {
 				wp_publish_post( $post_id );
+
+				/**
+				 * Fires after a post is published.
+				 *
+				 * @param int $post_id
+				 */
+				do_action( 'after_retry_scheduled_post', $post_id );
 			}
 		}
 	}
