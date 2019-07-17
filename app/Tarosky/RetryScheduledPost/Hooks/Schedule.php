@@ -41,7 +41,7 @@ class Schedule extends Singleton {
 	 */
 	public function update_cron_schedule() {
 		$this->clear_cron_schedule();
-		wp_schedule_event( current_time( 'timestamp', true ), 'rsp_interval', 'retry_scheduled_post' );
+		wp_schedule_event( current_time( 'timestamp', 1 ), 'rsp_interval', 'retry_scheduled_post' );
 	}
 
 	/**
@@ -57,8 +57,14 @@ class Schedule extends Singleton {
 	 * Run cron schedulee event.
 	 */
 	public function retry_scheduled_post() {
-		$query = "SELECT ID FROM {$this->db->posts} WHERE post_status='future' AND post_date<=CURRENT_TIMESTAMP() LIMIT 5";
-		if ( $post_ids = $this->db->get_col( $query ) ) {
+		$query = <<<SQL
+SELECT ID FROM {$this->db->posts}
+WHERE post_status = 'future'
+AND post_date < %s
+LIMIT 0, %d
+SQL;
+		$sql   = $this->db->prepare( $query, current_time( 'mysql' ), $this->get_retry_post_count() );
+		if ( $post_ids = $this->db->get_col( $sql ) ) {
 			foreach ( $post_ids as $post_id ) {
 				wp_publish_post( $post_id );
 			}
