@@ -7,7 +7,7 @@ use Tarosky\RetryScheduledPost\Pattern\Singleton;
 /**
  * Class Schedule
  *
- * @package Tarosky\MediaXmlSitemap\Hooks
+ * @package Tarosky\RetryScheduledPost\Hooks
  */
 class Schedule extends Singleton {
 
