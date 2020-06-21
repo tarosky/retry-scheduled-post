@@ -3,6 +3,7 @@
 namespace Tarosky;
 
 use Tarosky\RetryScheduledPost\Admin\Admin;
+use Tarosky\RetryScheduledPost\Command\Cli;
 use Tarosky\RetryScheduledPost\Hooks\Schedule;
 use Tarosky\RetryScheduledPost\Pattern\Singleton;
 
@@ -23,6 +24,10 @@ class RetryScheduledPost extends Singleton {
 			Admin::get_instance();
 		}
 		Schedule::get_instance();
+
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			Cli::get_instance();
+		}
 	}
 
 	/**
