@@ -41,7 +41,12 @@ class Schedule extends Singleton {
 	 */
 	public function update_cron_schedule() {
 		$this->clear_cron_schedule();
-		wp_schedule_event( current_time( 'timestamp', 1 ), 'rsp_interval', 'retry_scheduled_post' );
+		error_log("TEST0621-1");
+		if ( ! empty( $this->options['is_enabled'] ) ) {
+			error_log( "TEST0621-2" );
+			wp_schedule_event( current_time( 'timestamp', 1 ), 'rsp_interval', 'retry_scheduled_post' );
+		}
+		error_log("TEST0621-3");
 	}
 
 	/**

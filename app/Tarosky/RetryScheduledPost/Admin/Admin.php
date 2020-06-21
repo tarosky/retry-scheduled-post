@@ -48,6 +48,14 @@ class Admin extends Singleton {
 		}, $this->slug );
 
 		add_settings_field(
+			'is_enabled',
+			__( 'Enable setting', 'retry-scheduled-post' ),
+			[ $this, 'is_enabled_callback' ],
+			$this->slug,
+			'basic_settings'
+		);
+
+		add_settings_field(
 			'retry_interval',
 			__( 'Retry interval', 'retry-scheduled-post' ),
 			[ $this, 'retry_interval_callback' ],
@@ -65,16 +73,28 @@ class Admin extends Singleton {
 	}
 
 	/**
+	 * Render callback for is enabled.
+	 */
+	public function is_enabled_callback() {
+		$is_enabled = isset( $this->options['is_enabled'] ) ? $this->options['is_enabled'] : '';
+		?>
+		<input name="<?php echo $this->slug; ?>[is_enabled]" type="checkbox"
+		       id="is_enabled" value="1" <?php checked( $is_enabled, 1 ); ?>>
+		<p class="description"><?php _e( 'Check if you want to schedule the retry proccess for failed posts.', 'retry-scheduled-post' ); ?></p>
+		<?php
+	}
+
+	/**
 	 * Render callback for retry interval.
 	 */
 	public function retry_interval_callback() {
 		$retry_interval = isset( $this->options['retry_interval'] ) ? $this->options['retry_interval'] : '';
 		?>
-        <input name="<?php echo $this->slug; ?>[retry_interval]" type="number" step="1" min="1" max="60"
-               id="retry_interval" value="<?php echo esc_attr( $retry_interval ); ?>"
-               placeholder="<?php echo esc_attr( rsp_default_retry_interval() ); ?>"
-               class="small-text">
-        <p class="description"><?php printf( __( 'Retry interval in minutes. Default is <code>%s</code>.', 'retry-scheduled-post' ), rsp_default_retry_interval() ); ?></p>
+		<input name="<?php echo $this->slug; ?>[retry_interval]" type="number" step="1" min="1" max="60"
+		       id="retry_interval" value="<?php echo esc_attr( $retry_interval ); ?>"
+		       placeholder="<?php echo esc_attr( rsp_default_retry_interval() ); ?>"
+		       class="small-text">
+		<p class="description"><?php printf( __( 'Retry interval in minutes. Default is <code>%s</code>.', 'retry-scheduled-post' ), rsp_default_retry_interval() ); ?></p>
 		<?php
 	}
 
@@ -84,11 +104,11 @@ class Admin extends Singleton {
 	public function retry_post_count_callback() {
 		$retry_post_count = isset( $this->options['retry_post_count'] ) ? $this->options['retry_post_count'] : '';
 		?>
-        <input name="<?php echo $this->slug; ?>[retry_post_count]" type="number" step="1" min="1" max="100"
-               id="retry_post_count" value="<?php echo esc_attr( $retry_post_count ); ?>"
-               placeholder="<?php echo esc_attr( rsp_default_retry_post_count() ); ?>"
-               class="small-text">
-        <p class="description"><?php printf( __( 'Retry this number at one time. Default is <code>%s</code>.', 'retry-scheduled-post' ), rsp_default_retry_post_count() ); ?></p>
+		<input name="<?php echo $this->slug; ?>[retry_post_count]" type="number" step="1" min="1" max="100"
+		       id="retry_post_count" value="<?php echo esc_attr( $retry_post_count ); ?>"
+		       placeholder="<?php echo esc_attr( rsp_default_retry_post_count() ); ?>"
+		       class="small-text">
+		<p class="description"><?php printf( __( 'Retry this number at one time. Default is <code>%s</code>.', 'retry-scheduled-post' ), rsp_default_retry_post_count() ); ?></p>
 		<?php
 	}
 
@@ -98,16 +118,16 @@ class Admin extends Singleton {
 	public function display() {
 		$action = untrailingslashit( admin_url() ) . '/options.php';
 		?>
-        <div class="wrap retry-scheduled-post-settings">
-            <h1 class="wp-heading-inline"><?php _e( 'Retry Scheduled Post Settings', 'retry-scheduled-post' ); ?></h1>
-            <form action="<?php echo esc_url( $action ); ?>" method="post">
+		<div class="wrap retry-scheduled-post-settings">
+			<h1 class="wp-heading-inline"><?php _e( 'Retry Scheduled Post Settings', 'retry-scheduled-post' ); ?></h1>
+			<form action="<?php echo esc_url( $action ); ?>" method="post">
 				<?php
 				settings_fields( $this->slug );
 				do_settings_sections( $this->slug );
 				submit_button();
 				?>
-            </form>
-        </div>
+			</form>
+		</div>
 		<?php
 	}
 
